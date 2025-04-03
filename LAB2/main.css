@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.welcome {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 2em;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.signup-area, .login-area {
+    border: 2px solid black;
+    margin: 20px 30%;
+}
+
+form {
+    padding: 0px 20%;
+    text-align: left;
+}
+
+.textbox {
+    width: 250px;
+    height: 20px;
+}
+
+.gender-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 25px;
+    gap: 10px;
+}
+
+.button-area {
+    text-align: center;
+}
+
+.submit-button {
+    background-color: lightgreen;
+    font-size: 1.2em;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.cancel-button {
+    background-color: red;
+    font-size: 1.2em;
+    padding: 10px 25px; 
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin: 5px;
+}

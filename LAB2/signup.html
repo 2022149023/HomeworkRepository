@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="main.css">
+    </head>
+    <body>
+        <header>
+            <h1 class="welcome">Welcome to INTERNET-PROGRAMMING MOVIE SITE</h1>
+        </header>
+        <section>
+            <div class="nav">
+                <p><a href="login.html">로그인</a></p> | <p><a href="signup.html">회원가입</a></p>
+            </div>
+            <div class="signup-area">
+                <form method="POST" action="">
+                    <p>
+                        <label>이름: <input name="name" type="text" class="textbox" placeholder="이름 입력" autocomplete="on" autofocus required /></label>
+                    </p>
+                    <p>
+                        <label>생일: <input name="date" type="date" required /></label>
+                    </p>
+                    <div class="gender-area">
+                        <p>성별: </p>
+                        <label><input name="gender" type="radio" value="man" checked required />남성</label>
+                        <label><input name="gender" type="radio" value="female" />여성</label>
+                    </div>
+                    <p>
+                        <label>학년: <input name="grade" type="number" class="textbox" min="1" step="1" autocomplete="on" /></label>
+                    </p>
+                    <p>
+                        <label>아이디: <input name="id" type="text" class="textbox" placeholder="아이디 입력" required /></label>
+                    </p>
+                    <p>
+                        <label>비밀번호: <input name="password" type="password" class="textbox" placeholder="비밀번호 입력" required /></label>
+                    </p>
+                    <p>
+                        <label>전화번호: <input name="tel" type="tel" class="textbox" pattern="\d{3}-\d{4}-\d{4}" placeholder="###-####-####" autocomplete="on" /></label>
+                    </p>
+                    <p>
+                        <label>이메일: <input name="email" type="email" class="textbox" placeholder="이메일 입력" autocomplete="on" required /></label>
+                    </p>
+                    <div>
+                        <label>보안 질문:
+                            <select name="security-question" required>
+                                <option disabled selected>질문을 선택하세요</option>
+                                <option>가장 좋아하는 숫자는?</option>
+                                <option>내가 태어난 지역은?</option>
+                                <option>내가 가장 좋아하는 음식은?</option>
+                            </select>
+                        </label>
+                    </div>
+                    <p>
+                        <label>답변: <input name="response" type="text" class="textbox" placeholder="답변 입력" autocomplete="on" required /></label>
+                    </p>
+                    <p class="button-area">
+                        <input type="submit" value="Signup" class="submit-button" />
+                        <input type="button" value="Cancel" class="cancel-button" />
+                    </p>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>
