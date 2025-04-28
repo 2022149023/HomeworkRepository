@@ -1,0 +1,201 @@
+body {
+    margin: 0;
+    padding: 0;
+    max-width: 1020px;
+    margin: 0 auto;
+}
+
+header {
+    width: 100%;
+    overflow: hidden;
+}
+
+.main-header {
+    animation-name: slide-left;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    position: relative;
+}
+
+@keyframes slide-left {
+    from {
+        left: 100%;
+    }
+    to {
+        left: 0;
+    }
+}
+
+.main-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.content > h2 {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+}
+
+.movie-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+}
+
+.movie-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 20%;
+    height: 300px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.movie-card {
+    position: relative;
+    height: 130px;
+}
+
+.movie-card > img {
+    transition: transform 2s;
+    object-fit: cover;
+}
+
+.movie-card:hover > img {
+    transform: scale(1.3);
+}
+
+.movie-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0; 
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.movie-card:hover .movie-title {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.about-content {
+    column-count: 2;
+    column-gap: 20px;
+    column-rule: 1px solid black;
+    margin-bottom: 20px;
+}
+
+.welcome {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 2em;
+    text-align: center;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.signup-area, .login-area {
+    border: 2px solid black;
+    margin: 20px 30%;
+}
+
+form {
+    padding: 0px 20%;
+    text-align: left;
+}
+
+.textbox {
+    width: 250px;
+    height: 20px;
+}
+
+.gender-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 25px;
+    gap: 10px;
+}
+
+.button-area {
+    text-align: center;
+}
+
+.submit-button {
+    background-color: lightgreen;
+    font-size: 1.2em;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.cancel-button {
+    background-color: red;
+    font-size: 1.2em;
+    padding: 10px 25px; 
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin: 5px;
+}
+
+@media screen and (min-width: 481px) and (max-width: 800px) {
+    .about-content {
+        column-count: 1;
+        margin-bottom: 20px;
+    }
+
+    .movie-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .movie-content {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .about-content {
+        column-count: 1;
+        margin-bottom: 20px;
+    }
+
+    .movie-list {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .movie-content {
+        width: 80%;
+    }
+}
