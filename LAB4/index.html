@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LAB4</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <script>
+            
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1 class="main-header">인프밍 영화 정보 사이트입니다.</h1>
+            <nav class="main-nav">
+                <p><a href="index.html">메인페이지</a></p>
+                <p><a href="login.html">로그인</a></p>
+                <p><a href="signup.html">회원가입</a></p>
+            </nav>
+        </header>
+        <section>
+            <div class="movie-search">
+                <input type="text" id="search" placeholder="키워드를 입력하세요">
+                <input type="button" id="search-button" value="Filter results">
+            </div>
+            <div class="content">
+                <h2>Movies</h2>
+                <div class="movie-area">
+                    <div class="filter-box">
+                        <h3>정렬 기준</h3>
+                        <div class="sort-options">
+                            <label><input type="radio" name="sort" value="rating_desc"> 평점 내림차순</label>
+                            <label><input type="radio" name="sort" value="rating_asc"> 평점 오름차순</label>
+                            <label><input type="radio" name="sort" value="date_desc"> 개봉 내림차순</label>
+                            <label><input type="radio" name="sort" value="date_asc"> 개봉 오름차순</label>
+                            <label><input type="radio" name="sort" value="runtime_desc"> 상영시간 내림차순</label>
+                            <label><input type="radio" name="sort" value="runtime_asc"> 상영시간 오름차순</label>
+                        </div>
+                    </div>
+                    <div id="filter-results"></div>
+                </div>
+            </div>
+            <div class="content">
+                <h2>About</h2>
+                <div class="about-content">
+                    여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트!
+                    여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트!
+                    여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트!
+                    여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트!
+                    여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트!
+                    여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트!
+                    여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트!
+                    여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트!
+                    여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트!
+                    여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트! 여기는 인프밍 영화 정보 사이트!
+                </div>
+            </div>
+        </section>
+        <script>
+            let movies = [];
+            let filteredMovies = [];
+            const moviesPerPage = 4;
+            let currentPage = 0;
+
+            const searchInput = document.getElementById("search");
+            const searchButton = document.getElementById("search-button");
+            const sortRadios = document.querySelectorAll("input[name='sort']");
+            const resultsDiv = document.getElementById("filter-results");
+
+            fetch("./product.json")
+                .then(response => response.json())
+                .then(data => {
+                    movies = data;
+                    filteredMovieDisplay();
+                });
+
+            searchButton.addEventListener("click", () => {
+                filteredMovieDisplay();
+            });
+
+            sortRadios.forEach(radio => {
+                radio.addEventListener("change", () => {
+                    filteredMovieDisplay();
+                });
+            });
+
+            function filteredMovieDisplay() {
+                const keyword = searchInput.value.toLowerCase();
+                const selectedSort = document.querySelector("input[name='sort']:checked")?.value;
+
+                filteredMovies = movies.filter(movie =>
+                    movie.title.toLowerCase().includes(keyword)
+                );
+
+                if (selectedSort === "rating_desc") {
+                    filteredMovies.sort((a, b) => b.vote_average - a.vote_average);
+                } else if (selectedSort === "rating_asc") {
+                    filteredMovies.sort((a, b) => a.vote_average - b.vote_average);
+                } else if (selectedSort === "date_desc") {
+                    filteredMovies.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+                } else if (selectedSort === "date_asc") {
+                    filteredMovies.sort((a, b) => new Date(a.release_date) - new Date(b.release_date));
+                } else if (selectedSort === "runtime_desc") {
+                    filteredMovies.sort((a, b) => b.runtime - a.runtime);
+                } else if (selectedSort === "runtime_asc") {
+                    filteredMovies.sort((a, b) => a.runtime - b.runtime);
+                }
+
+                resultsDiv.innerHTML = "";
+                currentPage = 0;
+                loadNextMovies();
+            }
+
+            function loadNextMovies() {
+                const start = currentPage * moviesPerPage;
+                const end = start + moviesPerPage;
+                const pageMovies = filteredMovies.slice(start, end);
+
+                if (pageMovies.length === 0) return;
+
+                pageMovies.forEach(movie => {
+                    const movieDiv = document.createElement("div");
+                    movieDiv.className = "movie";
+                    movieDiv.style.width = "46%";
+                    movieDiv.style.textAlign = "center";
+
+                    const posterDiv = document.createElement("div");
+                    posterDiv.className = "movie-poster";
+                    posterDiv.style.width = "100%";
+                    posterDiv.style.height = "80%";
+
+                    const img = document.createElement("img");
+                    img.src = movie.image;
+                    img.alt = movie.title;
+
+                    const overview = document.createElement("div");
+                    overview.className = "movie-overview";
+                    overview.innerHTML = "<h3>줄거리</h3>" + movie.overview;
+                    overview.style.display = "none";
+
+                    posterDiv.addEventListener("mouseover", () => {
+                        overview.style.display = "block";
+                    });
+
+                    posterDiv.addEventListener("mouseout", () => {
+                        overview.style.display = "none";
+                    });
+
+                    posterDiv.appendChild(img);
+                    posterDiv.appendChild(overview);
+
+                    const detailDiv = document.createElement("div");
+                    detailDiv.className = "movie-detail";
+                    detailDiv.style.marginTop = "10px";
+                    detailDiv.style.height = "20%";
+
+                    const title = document.createElement("h4");
+                    title.textContent = movie.title;
+                    title.style.margin = "0";
+
+                    const release = document.createElement("p");
+                    release.innerHTML = `🗓️: ${movie.release_date || "정보 없음"}`;
+                    release.style.margin = "0";
+
+                    const rating = document.createElement("p");
+                    rating.innerHTML = `⭐: ${movie.vote_average ?? ""}/10`;
+                    rating.style.margin = "0";
+
+                    const runtime = document.createElement("p");
+                    runtime.innerHTML = `🎥: ${movie.runtime ?? ""}분`;
+                    runtime.style.margin = "0";
+
+                    detailDiv.appendChild(title);
+                    detailDiv.appendChild(release);
+                    detailDiv.appendChild(rating);
+                    detailDiv.appendChild(runtime);
+
+                    movieDiv.appendChild(posterDiv);
+                    movieDiv.appendChild(detailDiv);
+
+                    resultsDiv.appendChild(movieDiv);
+                });
+
+                currentPage++;
+            }
+
+            window.addEventListener("scroll", () => {
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                    loadNextMovies();
+                }
+            });
+        </script>
+    </body>
+</html>
